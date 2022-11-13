@@ -1,0 +1,7 @@
+#include "tirl-validator.h"
+
+namespace tirlvalidator {
+	double multiply(double a, double b) {
+		return a * b;
+	}
+}
