@@ -26,12 +26,12 @@ public class TirlValidatorModule extends ReactContextBaseJavaModule {
     System.loadLibrary("cpp");
   }
 
-  private static native double nativeMultiply(double a, double b);
+  private static native String nativeLibraryVersion();
 
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
-  public void multiply(double a, double b, Promise promise) {
-    promise.resolve(nativeMultiply(a, b));
+  public void libraryVersion(Promise promise) {
+    promise.resolve(nativeLibraryVersion());
   }
 }

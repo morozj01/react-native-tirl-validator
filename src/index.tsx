@@ -17,6 +17,6 @@ const TirlValidator = NativeModules.TirlValidator
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return TirlValidator.multiply(a, b);
+export function libraryVersion(): Promise<string> {
+  return TirlValidator.libraryVersion();
 }
