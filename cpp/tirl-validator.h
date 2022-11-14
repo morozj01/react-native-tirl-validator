@@ -1,8 +1,11 @@
 #ifndef TIRLVALIDATOR_H
 #define TIRLVALIDATOR_H
 
-namespace tirlvalidator {
-  double multiply(double a, double b);
+#include <string>
+
+namespace tirlvalidator
+{
+  std::string libraryVersion();
 }
 
 #endif /* TIRLVALIDATOR_H */

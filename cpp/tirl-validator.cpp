@@ -1,7 +1,10 @@
 #include "tirl-validator.h"
+#include "libzortag.h"
 
-namespace tirlvalidator {
-	double multiply(double a, double b) {
-		return a * b;
+namespace tirlvalidator
+{
+	std::string libraryVersion()
+	{
+		return zortag::library_version();
 	}
 }
