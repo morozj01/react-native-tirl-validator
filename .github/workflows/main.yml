@@ -37,7 +37,7 @@ jobs: # each workflow consists of 1+ jobs; by default, all jobs run in parallel
       - name: Run build checks
         run: npm run prepare
 
-    test:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout commit
