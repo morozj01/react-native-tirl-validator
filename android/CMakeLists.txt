@@ -13,7 +13,7 @@ get_filename_component(PARENT_DIR ${PROJECT_SOURCE_DIR} DIRECTORY)
 message(WARNING ${PARENT_DIR})
 
 add_library(libzortag STATIC IMPORTED)
-set_target_properties(libzortag PROPERTIES IMPORTED_LOCATION ${PARENT_DIR}/cpp/${ANDROID_ABI}/libzortag.a)
+set_target_properties(libzortag PROPERTIES IMPORTED_LOCATION ${PARENT_DIR}/cpp/zortag/${ANDROID_ABI}/libzortag.a)
 
 target_link_libraries(cpp libzortag)
 
