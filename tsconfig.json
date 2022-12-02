@@ -23,6 +23,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "target": "esnext"
   }
 }
