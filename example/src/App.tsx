@@ -1,18 +1,16 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'tirl-validator';
+//import { multiply } from 'tirl-validator';
+
+//@TODO Create full example
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  //const [result, setResult] = React.useState<number | undefined>();
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Result: 10</Text>
     </View>
   );
 }
