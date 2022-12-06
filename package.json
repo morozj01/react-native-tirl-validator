@@ -32,9 +32,9 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
+    "example": "npm --prefix example install",
     "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build",
-    "bootstrap": "yarn example && yarn install && yarn example pods"
+    "bootstrap": "npm run example && npm install && npm --prefix example run pods"
   },
   "keywords": [
     "react-native",
@@ -87,7 +87,9 @@
       "^.+\\.(ts|tsx)?$": "ts-jest",
       "^.+\\.(js|jsx)$": "babel-jest"
     },
-    "testMatch":["**.test.ts"]
+    "testMatch": [
+      "**.test.ts"
+    ]
   },
   "commitlint": {
     "extends": [
