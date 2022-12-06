@@ -33,7 +33,7 @@ RCT_REMAP_METHOD(findBarcode,
 }
 
 RCT_REMAP_METHOD(processLabel,
-                 findBarcodeWithData:(NSString *)data
+                 processLabelWithData:(NSString *)data
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 {
