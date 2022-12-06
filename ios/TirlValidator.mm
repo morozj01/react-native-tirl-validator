@@ -3,14 +3,41 @@
 @implementation TirlValidator
 RCT_EXPORT_MODULE()
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(double)a withB:(double)b
+RCT_REMAP_METHOD(libraryVersion,
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 {
-    NSNumber *result = @(tirlvalidator::multiply(a, b));
+    NSString *result = @(tirlvalidator::libraryVersion().c_str());
+
+    resolve(result);
+}
+
+RCT_REMAP_METHOD(testColor,
+                 testColorWithName:(NSString *)name
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *result = @(tirlvalidator::testColor([name UTF8String]).c_str());
+
+    resolve(result);
+}
+
+RCT_REMAP_METHOD(findBarcode,
+                 findBarcodeWithName:(NSString *)name withFlash:(BOOL)flash
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *result = @(tirlvalidator::findBarcode([name UTF8String], flash).c_str());
+
+    resolve(result);
+}
+
+RCT_REMAP_METHOD(processLabel,
+                 findBarcodeWithData:(NSString *)data
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *result = @(tirlvalidator::processLabel(std::string([data UTF8String])).c_str());
 
     resolve(result);
 }
