@@ -37,7 +37,7 @@ const getLabel = async (client: ComposeClient, labelId: string) => {
   });
 
   if (label) return label;
-  throw new Error(`Label with ID ${labelId} not found`);
+  throw new Error('Label not indexed by ceramic');
 };
 
 export {

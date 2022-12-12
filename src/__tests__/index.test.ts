@@ -31,6 +31,7 @@ jest.mock('../modules/native', () => ({
   nativeValidator: {
     findBarcode: jest.fn(),
     processLabel: jest.fn(),
+    authenticate: jest.fn(),
   },
 }));
 
@@ -41,6 +42,7 @@ jest.mock('../modules/ceramic', () => ({
 const mockFindBarcode = nativeValidator.findBarcode as jest.Mocked<any>;
 const mockGetLabel = getLabel as jest.Mocked<any>;
 const mockProcessLabel = nativeValidator.processLabel as jest.Mocked<any>;
+const mockAuthenticate = nativeValidator.authenticate as jest.Mocked<any>;
 
 describe('TirlValidator', () => {
   let instance;
@@ -109,7 +111,7 @@ describe('TirlValidator', () => {
     );
   });
 
-  test('returns labelData when no errors are thrown', async () => {
+  test('returns correct data when scanDone is false', async () => {
     mockFindBarcode.mockResolvedValue(
       JSON.stringify({ barcode: 'test/12345' })
     );
@@ -119,9 +121,9 @@ describe('TirlValidator', () => {
 
     mockProcessLabel.mockResolvedValue(
       JSON.stringify({
-        some: 'mock',
-        data: 'to',
-        send: 'back',
+        scan_done: false,
+        scan_right: true,
+        scan_left: false,
       })
     );
 
@@ -130,9 +132,41 @@ describe('TirlValidator', () => {
     const res = await instance.validate('test_path');
 
     expect(res).toStrictEqual({
-      some: 'mock',
-      data: 'to',
-      send: 'back',
+      labelId: '12345',
+      scanDone: false,
+      scanRight: true,
+      scanLeft: false,
+    });
+  });
+
+  test('returns correct data when scanDone is true and label is valid', async () => {
+    mockFindBarcode.mockResolvedValue(
+      JSON.stringify({ barcode: 'test/12345' })
+    );
+    mockGetLabel.mockResolvedValue({
+      node: { barcodeId: '12345', imageData: '0x54321' },
+    });
+
+    mockProcessLabel.mockResolvedValue(
+      JSON.stringify({
+        scan_done: true,
+        scan_right: true,
+        scan_left: true,
+      })
+    );
+
+    mockAuthenticate.mockResolvedValue(JSON.stringify({ result: 'pass' }));
+
+    instance = new TirlValidator('http://ceramic.com');
+
+    const res = await instance.validate('test_path');
+
+    expect(res).toStrictEqual({
+      labelId: '12345',
+      scanDone: true,
+      scanRight: true,
+      scanLeft: true,
+      valid: true,
     });
   });
 });

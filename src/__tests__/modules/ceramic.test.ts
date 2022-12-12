@@ -141,7 +141,7 @@ describe('getLabel', () => {
     const mockClient: any = { executeQuery };
 
     await expect(getLabel(mockClient, '12345')).rejects.toStrictEqual(
-      new Error('Label with ID 12345 not found')
+      new Error('Label not indexed by ceramic')
     );
   });
 });

@@ -40,4 +40,10 @@ namespace tirlvalidator
 		std::string labelData = zortag::process_label(barcodeData, "{\"version\":1}");
 		return labelData;
 	}
+
+	std::string authenticate(std::string labelData, std::string imageData)
+	{
+		std::string result = zortag::authenticate(labelData, imageData);
+		return result;
+	}
 }
