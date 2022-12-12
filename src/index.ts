@@ -50,11 +50,31 @@ class TirlValidator {
         await nativeValidator.processLabel(JSON.stringify(barcodeData))
       );
 
-      if (labelData.err) throw new Error(labelData.err);
+      if (labelData.error) throw new Error(labelData.error);
 
-      // @TODO If labelData.scan_done === true call the verification function and return final result
+      if (!labelData.scan_done) {
+        return {
+          labelId: this.labelId,
+          scanDone: labelData.scan_done,
+          scanRight: labelData.scan_right,
+          scanLeft: labelData.scan_left,
+        };
+      }
 
-      return labelData;
+      const { result } = JSON.parse(
+        await nativeValidator.authenticate(
+          JSON.stringify(labelData),
+          JSON.stringify({ fingerprint: this.imageData, version: 1 })
+        )
+      );
+
+      return {
+        labelId: this.labelId,
+        scanDone: labelData.scan_done,
+        scanRight: labelData.scan_right,
+        scanLeft: labelData.scan_left,
+        valid: result === 'pass' ? true : false,
+      };
     } catch (error: any) {
       return {
         error: {

@@ -42,6 +42,16 @@ RCT_REMAP_METHOD(processLabel,
     resolve(result);
 }
 
+RCT_REMAP_METHOD(authenticate,
+                 authenticateWithLabel:(NSString *)label withImage:(NSString *)image
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+{
+    NSString *result = @(tirlvalidator::authenticate(std::string([label UTF8String]), std::string([image UTF8String])).c_str());
+
+    resolve(result);
+}
+
 // Don't compile this code when we build for the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:

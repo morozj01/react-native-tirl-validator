@@ -34,6 +34,8 @@ public class TirlValidatorModule extends ReactContextBaseJavaModule {
 
   private static native String nativeProcessLabel(String barcodeData);
 
+  private static native String nativeAuthenticate(String labelData, String imageData);
+
   // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
@@ -54,5 +56,10 @@ public class TirlValidatorModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void processLabel(String barcodeData, Promise promise) {
     promise.resolve(nativeProcessLabel(barcodeData));
-  }  
+  }
+
+  @ReactMethod
+  public void authenticate(String labelData, String imageData, Promise promise) {
+    promise.resolve(nativeAuthenticate(labelData, imageData));
+  }
 }

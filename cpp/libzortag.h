@@ -17,9 +17,11 @@ namespace zortag
 
   std::string process_label(const std::string &barcode_data, const std::string &version_data);
 
-  std::string add_location(const std::string &laebel_data,
+  std::string add_location(const std::string &label_data,
                            std::optional<double> latitude, std::optional<double> longitude, std::optional<double> position_accuracy,
                            std::optional<double> altitude, std::optional<double> altitude_accuracy);
+
+  std::string authenticate(const std::string &label_data, const std::string &fingerprint_data);
 
 }
 
