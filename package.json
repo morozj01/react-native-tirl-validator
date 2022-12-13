@@ -106,6 +106,7 @@
     },
     "github": {
       "push": false,
+      "requireUpstream":false,
       "release": false
     },
     "plugins": {
