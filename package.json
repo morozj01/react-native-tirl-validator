@@ -1,6 +1,6 @@
 {
   "name": "tirl-validator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -100,8 +100,8 @@
     "git": {
       "commitMessage": "chore: release ${version}",
       "tagName": "v${version}",
-      "requireUpstream":false,
-      "push":false
+      "requireUpstream": false,
+      "push": false
     },
     "npm": {
       "publish": false
