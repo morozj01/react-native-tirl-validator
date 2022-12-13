@@ -1,0 +1,22 @@
+name: Node.js Package
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  publish-package:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: npm ci
+      - run: npm run prepare
+      - run: npm publish
