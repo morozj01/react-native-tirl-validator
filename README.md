@@ -105,10 +105,12 @@ Run release-it
 npm run release
 ```
 
+Agree to all of the prompts in your terminal
+
 If the changelog & version updates look correct
 
 ```sh
-git push origin release-v${version}
+git push origin release-v${version} --follow-tags
 ```
 
 Open a pull request from the [repository](https://github.com/ZKLadder/tirl-validator)
