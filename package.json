@@ -1,7 +1,7 @@
 {
   "name": "tirl-validator",
-  "version": "0.2.0",
-  "description": "test",
+  "version": "0.3.0",
+  "description": "Utilities for integrating with the TrustlessIRL protocol. Built for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -31,7 +31,7 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it",
+    "release": "release-it --ci",
     "example": "npm --prefix example install && npm --prefix example install ../tirl-validator/tirl-validator-0.1.0.tgz",
     "clean": "npx del-cli android/build example/android/build example/android/app/build example/ios/build",
     "bootstrap": "npm install && npm run prepare && npm pack && npm run example && npm --prefix example run pods"

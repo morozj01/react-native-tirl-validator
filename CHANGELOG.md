@@ -1,6 +1,11 @@
 
 
-# 0.2.0 (2022-12-13)
+# 0.3.0 (2022-12-13)
+
+
+### Bug Fixes
+
+* release CI ([#8](https://github.com/ZKLadder/tirl-validator/issues/8)) ([356af71](https://github.com/ZKLadder/tirl-validator/commit/356af7193d2190fc44d26a52a390ba98384c71b1))
 
 
 ### Features

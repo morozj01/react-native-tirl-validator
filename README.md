@@ -81,39 +81,19 @@ npm run ios
 npm run android
 ```
 
+You may need to add the following to the `example/android/local.properties` file
+
+```sh
+# On Windows
+sdk.dir=C:\\Users\\<name>\\AppData\\Local\\Android\\sdk
+
+# On Mac
+sdk.dir=/Users/<name>/Library/Android/sdk
+```
+
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## Release Process
-
-Ensure that you are currently on the main branch
-
-```sh
-git branch --show-current
-```
-
-Checkout to release branch
-
-```sh
-git checkout -b release-v${version}
-```
-
-Run release-it
-
-```sh
-npm run release
-```
-
-Agree to all of the prompts in your terminal
-
-If the changelog & version updates look correct
-
-```sh
-git push origin release-v${version} --follow-tags
-```
-
-Open a pull request from the [repository](https://github.com/ZKLadder/tirl-validator)
 
 ## License
 
