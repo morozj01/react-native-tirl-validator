@@ -100,7 +100,8 @@
     "git": {
       "commitMessage": "chore: release ${version}",
       "tagName": "v${version}",
-      "requireUpstream":false
+      "requireUpstream":false,
+      "push":false
     },
     "npm": {
       "publish": false
