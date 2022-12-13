@@ -19,14 +19,17 @@ Successful scans must capture images of the label with the camera tilted slightl
 ## Usage
 
 The TirlValidator class exposes a single function:
+
 #### validate(imagePath): Promise<scanResult>
 
 Read the image at `imagePath` and return result if scan completed, or further scan requirements if not.
 
 **Params**
+
 - imagePath `string` - should contain an image of a valid TIRL label
 
 **Returns**
+
 ```ts
 {
   labelId: string; // ID of TIRL label being scanned
@@ -81,6 +84,34 @@ npm run android
 ## Contributing
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
+## Release Process
+
+Ensure that you are currently on the main branch
+
+```sh
+git branch --show-current
+```
+
+Checkout to release branch
+
+```sh
+git checkout -b release-v${version}
+```
+
+Run release-it
+
+```sh
+npm run release
+```
+
+If the changelog & version updates look correct
+
+```sh
+git push origin release-v${version}
+```
+
+Open a pull request from the [repository](https://github.com/ZKLadder/tirl-validator)
 
 ## License
 
