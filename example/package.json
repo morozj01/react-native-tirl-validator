@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "react": "18.1.0",
-    "react-native": "0.70.5"
+    "react-native": "0.70.5",
+    "react-native-fs": "^2.20.0",
+    "react-native-vision-camera": "^2.15.2",
+    "tirl-validator": "file:../tirl-validator-0.1.0.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "metro-react-native-babel-preset": "0.72.3",
-    "babel-plugin-module-resolver": "^4.1.0"
+    "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "0.72.3"
   }
 }
