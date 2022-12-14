@@ -31,7 +31,6 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it --ci",
     "example": "npm --prefix example install && npm --prefix example install ../tirl-validator/tirl-validator-0.1.0.tgz",
     "clean": "npx del-cli android/build example/android/build example/android/app/build example/ios/build",
     "bootstrap": "npm install && npm run prepare && npm pack && npm run example && npm --prefix example run pods"
@@ -70,7 +69,6 @@
     "react": "18.1.0",
     "react-native": "0.70.5",
     "react-native-builder-bob": "^0.20.1",
-    "release-it": "^15.0.0",
     "ts-jest": "^29.0.3",
     "typescript": "^4.5.2"
   },
@@ -95,26 +93,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}",
-      "requireUpstream": false,
-      "push": false
-    },
-    "npm": {
-      "publish": false
-    },
-    "github": {
-      "release": false
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular",
-        "infile": "CHANGELOG.md"
-      }
-    }
   },
   "eslintConfig": {
     "root": true,
