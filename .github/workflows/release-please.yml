@@ -12,7 +12,7 @@ jobs:
         with:
           release-type: node
           package-name: tirl-validator
-          prerelease: true
+          release-as: 0.3.1
 
       - uses: actions/checkout@v2
         # these if statements ensure that a publication only occurs when
