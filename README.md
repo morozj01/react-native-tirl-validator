@@ -43,32 +43,11 @@ Read the image at `imagePath` and return result if scan completed, or further sc
 
 ### Example
 
-```ts
-import { TirlValidator } from 'tirl-validator';
-
-const path = 'local/path/to/image/file';
-
-const tirlValidator = new TirlValidator('https://tirl/ceramic/node');
-
-const result = await tirlValidator.validate(path);
-
-if (result.scanDone) {
-  const { valid } = result;
-  // Handle success case
-}
-
-if (result.error) {
-  const { message, stack } = result.error;
-  // Handle error
-}
-
-const { scanLeft, scanRight } = result;
-// Continue scanning until scanDone === true
-```
-
 A full example can be found [here](https://github.com/ZKLadder/tirl-validator/blob/main/example/src/App.tsx) which utilizes [vision-camera](https://github.com/mrousavy/react-native-vision-camera) and [react-native-fs](https://github.com/itinance/react-native-fs)
 
 ### Running the example
+
+Make sure you have followed all of the steps required for setting up your [React Native Development Environment](https://reactnative.dev/docs/environment-setup)
 
 ```sh
 npm run bootstrap
@@ -90,6 +69,8 @@ sdk.dir=C:\\Users\\<name>\\AppData\\Local\\Android\\sdk
 # On Mac
 sdk.dir=/Users/<name>/Library/Android/sdk
 ```
+
+_You will also need to have a working webcam or camera device attached to your mobile emulator_
 
 ## Contributing
 
