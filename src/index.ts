@@ -36,7 +36,7 @@ class TirlValidator {
       const labelId = barcodeData.barcode.split('/').pop();
       if (!this.labelId) {
         const { node } = await getLabel(this.composeClient, labelId);
-        this.labelId = node.barcodeId;
+        this.labelId = node.labelId;
         this.imageData = node.imageData;
       }
 

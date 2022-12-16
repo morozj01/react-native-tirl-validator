@@ -109,7 +109,7 @@ describe('getLabel', () => {
     const executeQuery = jest.fn().mockResolvedValueOnce({
       data: {
         tirlLabelIndex: {
-          edges: [{ node: { barcodeId: '12345' } }],
+          edges: [{ node: { labelId: '12345' } }],
           pageInfo: {
             endCursor: '123',
             hasNextPage: false,
@@ -122,14 +122,14 @@ describe('getLabel', () => {
 
     const result = await getLabel(mockClient, '12345');
 
-    expect(result).toStrictEqual({ node: { barcodeId: '12345' } });
+    expect(result).toStrictEqual({ node: { labelId: '12345' } });
   });
 
   test('throws when label not found', async () => {
     const executeQuery = jest.fn().mockResolvedValueOnce({
       data: {
         tirlLabelIndex: {
-          edges: [{ node: { barcodeId: '54321' } }],
+          edges: [{ node: { labelId: '54321' } }],
           pageInfo: {
             endCursor: '123',
             hasNextPage: false,

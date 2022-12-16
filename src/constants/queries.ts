@@ -3,9 +3,10 @@ query ($cursor: String) {
   tirlLabelIndex(first: 100, after: $cursor) {
     edges {
       node {
-        barcodeId
-        imageData
         id
+        labelId
+        symbology
+        imageData
         uploadTime
       }
     }

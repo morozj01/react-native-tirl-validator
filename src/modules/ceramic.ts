@@ -32,8 +32,8 @@ const getAllPages = async (client: ComposeClient) => {
 const getLabel = async (client: ComposeClient, labelId: string) => {
   const labels = await getAllPages(client);
 
-  const label = labels.find((edge: { node: { barcodeId: string } }) => {
-    return edge.node?.barcodeId === labelId;
+  const label = labels.find((edge: { node: { labelId: string } }) => {
+    return edge.node?.labelId === labelId;
   });
 
   if (label) return label;
