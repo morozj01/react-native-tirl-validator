@@ -2,14 +2,15 @@
 export const definition = {
   models: {
     TirlLabel: {
-      id: 'kjzl6hvfrbw6c65z7bpyak6mgz9maadbucil8sey0lkuy9ebiinbjl0vd9ygal4',
+      id: 'kjzl6hvfrbw6c77btq91imywzoedgg32ghix9h5x9p620hs83t2rp75d8qbyi8n',
       accountRelation: { type: 'list' },
     },
   },
   objects: {
     TirlLabel: {
-      barcodeId: { type: 'string', required: true },
+      labelId: { type: 'string', required: true },
       imageData: { type: 'string', required: true },
+      symbology: { type: 'string', required: true },
       uploadTime: { type: 'datetime', required: true },
     },
   },

@@ -81,7 +81,7 @@ describe('TirlValidator', () => {
       JSON.stringify({ barcode: 'test/12345' })
     );
     mockGetLabel.mockResolvedValue({
-      node: { barcodeId: '12345', imageData: '0x54321' },
+      node: { labelId: '12345', imageData: '0x54321' },
     });
 
     instance = new TirlValidator('http://ceramic.com');
@@ -97,7 +97,7 @@ describe('TirlValidator', () => {
       JSON.stringify({ barcode: 'test/12345' })
     );
     mockGetLabel.mockResolvedValue({
-      node: { barcodeId: '12345', imageData: '0x54321' },
+      node: { labelId: '12345', imageData: '0x54321' },
     });
 
     instance = new TirlValidator('http://ceramic.com');
@@ -116,7 +116,7 @@ describe('TirlValidator', () => {
       JSON.stringify({ barcode: 'test/12345' })
     );
     mockGetLabel.mockResolvedValue({
-      node: { barcodeId: '12345', imageData: '0x54321' },
+      node: { labelId: '12345', imageData: '0x54321' },
     });
 
     mockProcessLabel.mockResolvedValue(
@@ -144,7 +144,7 @@ describe('TirlValidator', () => {
       JSON.stringify({ barcode: 'test/12345' })
     );
     mockGetLabel.mockResolvedValue({
-      node: { barcodeId: '12345', imageData: '0x54321' },
+      node: { labelId: '12345', imageData: '0x54321' },
     });
 
     mockProcessLabel.mockResolvedValue(
