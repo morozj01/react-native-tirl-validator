@@ -13,7 +13,7 @@
     "react-native": "0.70.5",
     "react-native-fs": "^2.20.0",
     "react-native-vision-camera": "^2.15.2",
-    "tirl-validator": "file:../tirl-validator-0.1.0.tgz"
+    "tirl-validator": "file:.."
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
