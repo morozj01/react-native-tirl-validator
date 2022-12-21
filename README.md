@@ -33,17 +33,27 @@ Read the image at `imagePath` and return result if scan completed, or further sc
 ```ts
 {
   labelId: string; // ID of TIRL label being scanned
-  scanDone: boolean; // Returns true when scanning is complete and no more image capture is necessary
-  valid: boolean; // Notifies whether scanned label is authentic. Field set only when scanDone is true
-  scanLeft: boolean; // Scan completed from the left side
-  scanRight: boolean; // Scan completed from the right side
+  scanDone: boolean; // Returns true when both scanLeft and scanRight are true. Indicates scanning has completed.
+  valid: boolean; // Notifies whether scanned label is authentic. Field is set only when scanDone === true
+  scanLeft: boolean; // Indicates whether sufficient data has been captured with the camera tilted left.
+  scanRight: boolean; // Indicates whether sufficient data has been captured with the camera tilted right.
   error: Object; // Any errors will be returned here
 }
 ```
 
+#### Error Handling
+
+Occasionally the `validate()` function can return a property called `error`. The following is a list of common errors and how best to handle them based on the `error.message` property.
+
+| Error Message                                          | Description                                                                                  | Handling                                                                                        |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Barcode not found                                      | Indicates that the image being processed does not contain a TIRL label or is out of focus    | Safe to ignore and continue with scan. Can optionally prompt the user to adjust camera distance |
+| Found new barcode. Create a new TirlValidator instance | Indicates that the user may be scanning multiple unique labels within a single scan session. | Should instantiate a new instance of the TirlValidator class and restart the scan               |
+| Label not indexed by ceramic                           | Indicates that the Tirl label being scanned is not known by the network                      | This is a fatal error and it will not be possible to validate the label being scanned           |
+
 ### Example
 
-A full example can be found [here](https://github.com/ZKLadder/tirl-validator/blob/main/example/src/App.tsx) which utilizes [vision-camera](https://github.com/mrousavy/react-native-vision-camera) and [react-native-fs](https://github.com/itinance/react-native-fs)
+A full [example](https://github.com/ZKLadder/tirl-validator/blob/main/example/src/App.tsx) can be found in this repository which utilizes [vision-camera](https://github.com/mrousavy/react-native-vision-camera) and [react-native-fs](https://github.com/itinance/react-native-fs)
 
 ### Running the example
 

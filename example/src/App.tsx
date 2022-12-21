@@ -50,8 +50,8 @@ const App = () => {
   const ref = useRef<Camera>(null);
 
   const { current: tirlValidator } = useRef(
-    //@TODO Replace API URL with TIRL community node
-    new TirlValidator('http://10.0.2.2:7007')
+    //TIRL community node
+    new TirlValidator('https://ceramic.tirl.xyz')
   );
 
   //Check camera permissions on load
@@ -110,7 +110,7 @@ const App = () => {
             //Good practice to delete captured images on every invocation
             await fs.unlink(photo?.path as string);
           },
-          //Capture new image every have second
+          //Capture new image every half second
           500
         );
       }

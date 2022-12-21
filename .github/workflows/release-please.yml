@@ -12,3 +12,4 @@ jobs:
         with:
           release-type: node
           package-name: tirl-validator
+          token: ${{ secrets.RELEASE_TOKEN }}
