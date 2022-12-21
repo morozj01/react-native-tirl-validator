@@ -43,7 +43,7 @@ Read the image at `imagePath` and return result if scan completed, or further sc
 
 #### Error Handling
 
-Occasionally the `validate()` function can return a property called `error`. The following is a list of common errors and how best to handle them based on their `message` property.
+Occasionally the `validate()` function can return a property called `error`. The following is a list of common errors and how best to handle them based on the `error.message` property.
 
 | Error Message                                          | Description                                                                                  | Handling                                                                                        |
 | ------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
