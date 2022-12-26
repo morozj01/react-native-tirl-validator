@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.2](https://github.com/ZKLadder/tirl-validator/compare/v0.3.1...v0.3.2) (2022-12-21)
+
+
+### Bug Fixes
+
+* bootstrap script in package.json ([#23](https://github.com/ZKLadder/tirl-validator/issues/23)) ([857b4a2](https://github.com/ZKLadder/tirl-validator/commit/857b4a250a1fadc197f186c39815b1e88b6bfbda))
+* ceramic schema definition updates ([#21](https://github.com/ZKLadder/tirl-validator/issues/21)) ([162360c](https://github.com/ZKLadder/tirl-validator/commit/162360c5a50fccfb740cec80ee296c1812f29d36))
+* remove version lock from release action ([#19](https://github.com/ZKLadder/tirl-validator/issues/19)) ([5662475](https://github.com/ZKLadder/tirl-validator/commit/5662475569183168ca25321057f9afbb869ba8e0))
+
 ## 0.3.1 (2022-12-14)
 
 
