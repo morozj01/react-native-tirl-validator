@@ -1,6 +1,6 @@
 import { getPage, getAllPages, getLabel } from '../../modules/ceramic';
 import { getLabelsQuery } from '../../constants/queries';
-import { CeramicError } from '../../modules/errors';
+import { CeramicError, ErrorWithCode } from '../../modules/errors';
 
 describe('getPage', () => {
   beforeEach(() => {
@@ -141,7 +141,7 @@ describe('getLabel', () => {
     const mockClient: any = { executeQuery };
 
     await expect(getLabel(mockClient, '12345')).rejects.toStrictEqual(
-      new Error('Label not indexed by ceramic')
+      new ErrorWithCode({ message: 'Label not indexed by ceramic', code: 4 })
     );
   });
 });
