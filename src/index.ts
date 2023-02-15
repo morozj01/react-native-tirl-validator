@@ -7,6 +7,7 @@ import { definition } from './constants/ceramicRuntime.js';
 import { polyfill as polyfillEncoding } from 'react-native-polyfill-globals/src/encoding';
 //@ts-ignore
 import { polyfill as polyfillURL } from 'react-native-polyfill-globals/src/url';
+import { ErrorWithCode } from './modules/errors';
 
 polyfillEncoding();
 polyfillURL();
@@ -30,7 +31,7 @@ class TirlValidator {
       );
 
       if (Object.keys(barcodeData).length < 1) {
-        throw new Error('Barcode not found');
+        throw new ErrorWithCode({ message: 'Barcode not found', code: 1 });
       }
 
       const labelId = barcodeData.barcode.split('/').pop();
@@ -41,9 +42,10 @@ class TirlValidator {
       }
 
       if (this.labelId !== labelId) {
-        throw new Error(
-          'Found new barcode. Create a new TirlValidator instance'
-        );
+        throw new ErrorWithCode({
+          message: 'Found new barcode. Create a new TirlValidator instance',
+          code: 2,
+        });
       }
 
       const labelData = JSON.parse(
@@ -78,6 +80,7 @@ class TirlValidator {
     } catch (error: any) {
       return {
         error: {
+          code: error.code || 999,
           message: error.message,
           stack: error.stack,
           ...error,

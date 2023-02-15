@@ -1,6 +1,6 @@
 import type { ComposeClient } from '@composedb/client';
 import { getLabelsQuery } from '../constants/queries';
-import { CeramicError } from './errors';
+import { CeramicError, ErrorWithCode } from './errors';
 
 const getPage = async (client: ComposeClient, cursor?: string) => {
   const result: any = await client.executeQuery(getLabelsQuery, { cursor });
@@ -37,7 +37,7 @@ const getLabel = async (client: ComposeClient, labelId: string) => {
   });
 
   if (label) return label;
-  throw new Error('Label not indexed by ceramic');
+  throw new ErrorWithCode({ message: 'Label not indexed by ceramic', code: 4 });
 };
 
 export {
