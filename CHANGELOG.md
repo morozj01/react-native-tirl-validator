@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/ZKLadder/tirl-validator/compare/v0.3.2...v0.4.0) (2023-02-15)
+
+
+### Features
+
+* add codes to all errors ([#25](https://github.com/ZKLadder/tirl-validator/issues/25)) ([b7bd3c7](https://github.com/ZKLadder/tirl-validator/commit/b7bd3c71db496136e6d920e0a28f88e2e136e3e2))
+
 ## [0.3.2](https://github.com/ZKLadder/tirl-validator/compare/v0.3.1...v0.3.2) (2022-12-21)
 
 
