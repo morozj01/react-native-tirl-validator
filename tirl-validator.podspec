@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.vendored_libraries = "cpp/zortag/ios/libzortag.a"
 
-  if ENV['BUILD_TARGET'] == 'iossimulator' then
+  if ENV['TIRL_VALIDATOR_BUILD_TARGET'] == 'iossimulator' then
     s.vendored_libraries = "cpp/zortag/ios/libzortag-simulator.a"
   end
 
