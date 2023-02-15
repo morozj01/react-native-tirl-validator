@@ -6,6 +6,10 @@ Utilities to enable verifying TrustlessIRL physical labels. Built for React Nati
 
 ```sh
 npm install --save tirl-validator
+
+# If building for an IOS simulator
+export TIRL_VALIDATOR_BUILD_TARGET=iossimulator
+npx pod-install
 ```
 
 ## About
@@ -59,14 +63,26 @@ A full [example](https://github.com/ZKLadder/tirl-validator/blob/main/example/sr
 
 Make sure you have followed all of the steps required for setting up your [React Native Development Environment](https://reactnative.dev/docs/environment-setup)
 
+#### Running on an IOS Simulator
+
+_The IOS Simulator does not support camera usage so it will not be possible to fully test scanning functionality_
+
+```sh
+export TIRL_VALIDATOR_BUILD_TARGET=iossimulator
+npm run bootstrap
+cd example
+npm run ios
+```
+
+#### Running on an IOS Device
+
+Follow the instructions for [running React Native on your IOS Device](https://reactnative.dev/docs/running-on-device)
+
+#### Running on Android
+
 ```sh
 npm run bootstrap
 cd example
-
-#IOS
-npm run ios
-
-#Android
 npm run android
 ```
 
@@ -80,7 +96,7 @@ sdk.dir=C:\\Users\\<name>\\AppData\\Local\\Android\\sdk
 sdk.dir=/Users/<name>/Library/Android/sdk
 ```
 
-_You will also need to have a working webcam or camera device attached to your mobile emulator_
+_You will also need to have a working webcam or camera device attached to your mobile simulator_
 
 ## Contributing
 

@@ -15,7 +15,12 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/ZKLadder/tirl-validator.git.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{h,cpp}"
+
   s.vendored_libraries = "cpp/zortag/ios/libzortag.a"
+
+  if ENV['TIRL_VALIDATOR_BUILD_TARGET'] == 'iossimulator' then
+    s.vendored_libraries = "cpp/zortag/ios/libzortag-simulator.a"
+  end
 
   s.dependency "React-Core"
   s.pod_target_xcconfig = {
