@@ -59,14 +59,25 @@ A full [example](https://github.com/ZKLadder/tirl-validator/blob/main/example/sr
 
 Make sure you have followed all of the steps required for setting up your [React Native Development Environment](https://reactnative.dev/docs/environment-setup)
 
+## Running on an IOS Simulator
+_The IOS Simulator does not support camera usage so it will not be possible to fully test scanning functionality_
+
+```sh
+export BUILD_TARGET=iossimulator
+npm run bootstrap
+cd example
+npm run ios
+```
+
+## Running on an IOS Device
+
+Follow the instructions for [running React Native on your IOS Device](https://reactnative.dev/docs/running-on-device)
+
+## Running on Android
+
 ```sh
 npm run bootstrap
 cd example
-
-#IOS
-npm run ios
-
-#Android
 npm run android
 ```
 
