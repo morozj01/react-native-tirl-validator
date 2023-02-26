@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/ZKLadder/tirl-validator/compare/v0.4.0...v0.4.1) (2023-02-26)
+
+
+### Bug Fixes
+
+* update ceramic model id for tirl labels ([#27](https://github.com/ZKLadder/tirl-validator/issues/27)) ([18d7ccd](https://github.com/ZKLadder/tirl-validator/commit/18d7ccdac3a8504f7d988dd9dfa23a6e63b6bbd8))
+
 ## [0.4.0](https://github.com/ZKLadder/tirl-validator/compare/v0.3.2...v0.4.0) (2023-02-15)
 
 
