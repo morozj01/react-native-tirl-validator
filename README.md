@@ -49,13 +49,13 @@ Read the image at `imagePath` and return result if scan completed, or further sc
 
 Occasionally the `validate()` function can return a property called `error`. The following is a list of common errors and how best to handle them based on the `error.message` property.
 
-| Code | Description                                                                                  | Handling                                                                                        |
-| ---- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| 1    | Indicates that the image being processed does not contain a TIRL label or is out of focus    | Safe to ignore and continue with scan. Can optionally prompt the user to adjust camera distance |
-| 2    | Indicates that the user may be scanning multiple unique labels within a single scan session. | Should instantiate a new instance of the TirlValidator class and restart the scan               |
-| 3    | Indicates a network request to fetch label data has failed.                                  | Safe to continue with scan but may indicate general connectivity issues                         |
-| 4    | Indicates that the Tirl label being scanned is not known by the network                      | FATAL: This label is not known by the network and cannot be validated                           |
-| 999  | Indicates an unexpected error was thrown by the image processing module                      | FATAL: Can optionally inspect error.message for more detail                                     |
+| Code | Description                                                                                  | Handling                                                                             |
+| ---- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| 1    | Indicates that the image being processed does not contain a TIRL label or is out of focus    | Safe to continue with scan. Can optionally prompt the user to adjust camera distance |
+| 2    | Indicates that the user may be scanning multiple unique labels within a single scan session. | Should instantiate a new instance of the TirlValidator class and restart the scan    |
+| 3    | Indicates a network request to fetch label data has failed.                                  | Safe to continue with scan. May indicate general connectivity issues                 |
+| 4    | Indicates that the Tirl label being scanned is not known by the network                      | FATAL: This label is not known by the network and cannot be validated                |
+| 999  | Indicates an unexpected error was thrown by the image processing module                      | Safe to continue with scan. Can inspect error.message for more detail                |
 
 ### Example
 
