@@ -2,7 +2,7 @@
 export const definition = {
   models: {
     TirlLabel: {
-      id: 'kjzl6hvfrbw6c71efda5zvckzvnjtig2l3ktiykd6s156xuwikrg1rmrvah3855',
+      id: 'kjzl6hvfrbw6c8pguk3l4pesszi577f708fw69u0p2gz50opnpm98qwt5vdry9m',
       accountRelation: { type: 'list' },
     },
   },

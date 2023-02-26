@@ -99,7 +99,7 @@ const App = () => {
 
             //See https://github.com/ZKLadder/tirl-validator#readme for more detail on handling common error types
             if (result.error) {
-              console.log(result.error);
+              console.log(result.error.message);
               //Handle error
               return;
             }
