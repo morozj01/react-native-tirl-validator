@@ -1,147 +1,45 @@
-import { getPage, getAllPages, getLabel } from '../../modules/ceramic';
-import { getLabelsQuery } from '../../constants/queries';
-import { CeramicError, ErrorWithCode } from '../../modules/errors';
+import { getLabel } from '../../modules/ceramic';
+import { ErrorWithCode } from '../../modules/errors';
 
-describe('getPage', () => {
-  beforeEach(() => {
-    jest.resetModules();
-  });
-  test('returns correct results', async () => {
-    const executeQuery = jest.fn().mockResolvedValue({
-      data: {
-        tirlLabelIndex: {
-          edges: 'edges',
-          pageInfo: 'pageInfo',
-        },
-      },
-    });
+global.fetch = jest.fn();
 
-    const mockClient: any = { executeQuery };
-
-    const result = await getPage(mockClient, 'cursor123');
-
-    expect(result).toStrictEqual({
-      edges: 'edges',
-      pageInfo: 'pageInfo',
-    });
-
-    expect(executeQuery).toHaveBeenCalledWith(getLabelsQuery, {
-      cursor: 'cursor123',
-    });
-  });
-
-  test('throws when graphql returns errors', async () => {
-    const executeQuery = jest.fn().mockResolvedValue({
-      errors: 'an error occured',
-    });
-
-    const mockClient: any = { executeQuery };
-
-    await expect(getPage(mockClient, 'cursor123')).rejects.toStrictEqual(
-      new CeramicError({
-        errors: 'an error occured',
-      })
-    );
-  });
-});
-
-describe('getAllPages', () => {
-  test('returns correct results', async () => {
-    const executeQuery = jest
-      .fn()
-      .mockResolvedValueOnce({
-        data: {
-          tirlLabelIndex: {
-            edges: ['1'],
-            pageInfo: {
-              endCursor: '123',
-              hasNextPage: true,
-            },
-          },
-        },
-      })
-      .mockResolvedValueOnce({
-        data: {
-          tirlLabelIndex: {
-            edges: ['2'],
-            pageInfo: {
-              endCursor: '123',
-              hasNextPage: true,
-            },
-          },
-        },
-      })
-      .mockResolvedValueOnce({
-        data: {
-          tirlLabelIndex: {
-            edges: ['3'],
-            pageInfo: {
-              endCursor: '123',
-              hasNextPage: true,
-            },
-          },
-        },
-      })
-      .mockResolvedValueOnce({
-        data: {
-          tirlLabelIndex: {
-            edges: ['4'],
-            pageInfo: {
-              endCursor: '123',
-              hasNextPage: false,
-            },
-          },
-        },
-      });
-
-    const mockClient: any = { executeQuery };
-
-    const result = await getAllPages(mockClient);
-
-    expect(result).toStrictEqual(['1', '2', '3', '4']);
-
-    expect(executeQuery).toHaveBeenCalledTimes(4);
-  });
-});
+const mockFetch = global.fetch as jest.Mocked<any>;
 
 describe('getLabel', () => {
   test('returns correct results', async () => {
-    const executeQuery = jest.fn().mockResolvedValueOnce({
-      data: {
-        tirlLabelIndex: {
-          edges: [{ node: { labelId: '12345' } }],
-          pageInfo: {
-            endCursor: '123',
-            hasNextPage: false,
-          },
-        },
-      },
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => ({ mock: 'label' }),
     });
 
-    const mockClient: any = { executeQuery };
+    const result = await getLabel('http://tirl.com', '12345');
 
-    const result = await getLabel(mockClient, '12345');
-
-    expect(result).toStrictEqual({ node: { labelId: '12345' } });
+    expect(mockFetch).toHaveBeenCalledWith(
+      'http://tirl.com/api/label?labelId=12345'
+    );
+    expect(result).toStrictEqual({ mock: 'label' });
   });
 
   test('throws when label not found', async () => {
-    const executeQuery = jest.fn().mockResolvedValueOnce({
-      data: {
-        tirlLabelIndex: {
-          edges: [{ node: { labelId: '54321' } }],
-          pageInfo: {
-            endCursor: '123',
-            hasNextPage: false,
-          },
-        },
-      },
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
     });
 
-    const mockClient: any = { executeQuery };
-
-    await expect(getLabel(mockClient, '12345')).rejects.toStrictEqual(
+    await expect(getLabel('http://tirl.com', '12345')).rejects.toStrictEqual(
       new ErrorWithCode({ message: 'Label not indexed by ceramic', code: 4 })
+    );
+  });
+
+  test('throws when network errors', async () => {
+    mockFetch.mockRejectedValue({
+      network: 'error',
+    });
+
+    await expect(getLabel('http://tirl.com', '12345')).rejects.toStrictEqual(
+      new ErrorWithCode({
+        message: 'Error retrieving data from ceramic node',
+        code: 3,
+      })
     );
   });
 });

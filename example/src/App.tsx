@@ -50,8 +50,8 @@ const App = () => {
   const ref = useRef<Camera>(null);
 
   const { current: tirlValidator } = useRef(
-    //TIRL community node
-    new TirlValidator('https://ceramic.tirl.xyz')
+    //Iterati community endpoint
+    new TirlValidator('https://dev.iterati.art')
   );
 
   //Check camera permissions on load
@@ -99,7 +99,7 @@ const App = () => {
 
             //See https://github.com/ZKLadder/tirl-validator#readme for more detail on handling common error types
             if (result.error) {
-              console.log(result.error.message);
+              console.log(result.error.code, result.error.message);
               //Handle error
               return;
             }

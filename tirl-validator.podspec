@@ -18,10 +18,6 @@ Pod::Spec.new do |s|
 
   s.vendored_libraries = "cpp/zortag/ios/libzortag.a"
 
-  if ENV['TIRL_VALIDATOR_BUILD_TARGET'] == 'iossimulator' then
-    s.vendored_libraries = "cpp/zortag/ios/libzortag-simulator.a"
-  end
-
   s.dependency "React-Core"
   s.pod_target_xcconfig = {
     "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
