@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/ZKLadder/tirl-validator/compare/v0.4.1...v0.5.0) (2023-03-04)
+
+
+### Features
+
+* performance optimizations ([#29](https://github.com/ZKLadder/tirl-validator/issues/29)) ([8042d13](https://github.com/ZKLadder/tirl-validator/commit/8042d1375586b2bd988fc43405f139068ddbf48f))
+
 ## [0.4.1](https://github.com/ZKLadder/tirl-validator/compare/v0.4.0...v0.4.1) (2023-02-26)
 
 
