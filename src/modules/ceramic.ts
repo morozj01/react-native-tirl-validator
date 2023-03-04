@@ -1,49 +1,28 @@
-import type { ComposeClient } from '@composedb/client';
-import { getLabelsQuery } from '../constants/queries';
-import { CeramicError, ErrorWithCode } from './errors';
+import { ErrorWithCode } from './errors';
 
-const getPage = async (client: ComposeClient, cursor?: string) => {
-  const result: any = await client.executeQuery(getLabelsQuery, { cursor });
+const getLabel = async (labelApi: string, labelId: string) => {
+  let response;
 
-  if (result.errors) throw new CeramicError(result.errors);
-
-  return {
-    edges: result?.data?.tirlLabelIndex?.edges,
-    pageInfo: result?.data?.tirlLabelIndex?.pageInfo,
-  };
-};
-
-const getAllPages = async (client: ComposeClient) => {
-  const results = [];
-
-  let pageData = await getPage(client);
-  results.push(...pageData.edges);
-  let hasNextPage = pageData.pageInfo.hasNextPage;
-
-  while (hasNextPage) {
-    pageData = await getPage(client, pageData.pageInfo.endCursor);
-    results.push(...pageData.edges);
-    hasNextPage = pageData.pageInfo.hasNextPage;
+  try {
+    response = await fetch(`${labelApi}/api/label?labelId=${labelId}`);
+  } catch (err: any) {
+    //Network Error
+    throw new ErrorWithCode({
+      message: 'Error retrieving data from ceramic node',
+      code: 3,
+    });
   }
 
-  return results;
-};
+  if (response.ok) {
+    const label = await response.json();
+    return label;
+  }
 
-const getLabel = async (client: ComposeClient, labelId: string) => {
-  const labels = await getAllPages(client);
-
-  const label = labels.find((edge: { node: { labelId: string } }) => {
-    return edge.node?.labelId === labelId;
+  //404 Response from API
+  throw new ErrorWithCode({
+    message: 'Label not indexed by ceramic',
+    code: 4,
   });
-
-  if (label) return label;
-  throw new ErrorWithCode({ message: 'Label not indexed by ceramic', code: 4 });
 };
 
-export {
-  getLabel,
-
-  //exported for unit testing
-  getPage,
-  getAllPages,
-};
+export { getLabel };

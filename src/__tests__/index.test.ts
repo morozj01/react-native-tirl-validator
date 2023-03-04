@@ -1,7 +1,5 @@
-import { ComposeClient } from '@composedb/client';
 import { nativeValidator } from '../modules/native';
 import { getLabel } from '../modules/ceramic';
-
 import { TirlValidator } from '../index';
 
 jest.mock('react-native', () => ({
@@ -9,22 +7,6 @@ jest.mock('react-native', () => ({
     select: jest.fn(),
   },
   NativeModules: jest.fn(),
-}));
-
-jest.mock('@composedb/client', () => ({
-  ComposeClient: jest.fn(),
-}));
-
-jest.mock('../constants/ceramicRuntime.js', () => ({
-  definition: 'mockDefinition',
-}));
-
-jest.mock('react-native-polyfill-globals/src/encoding', () => ({
-  polyfill: jest.fn(),
-}));
-
-jest.mock('react-native-polyfill-globals/src/url', () => ({
-  polyfill: jest.fn(),
 }));
 
 jest.mock('../modules/native', () => ({
@@ -47,21 +29,11 @@ const mockAuthenticate = nativeValidator.authenticate as jest.Mocked<any>;
 describe('TirlValidator', () => {
   let instance;
 
-  beforeEach(() => {
-    (ComposeClient as jest.Mocked<any>).mockImplementation(() => ({
-      mock: 'class',
-    }));
-  });
-
   test('constructor correctly creates instance', async () => {
     instance = new TirlValidator('http://ceramic.com');
 
-    expect(ComposeClient as jest.Mocked<any>).toHaveBeenCalledWith({
-      ceramic: 'http://ceramic.com',
-      definition: 'mockDefinition',
-    });
-
     expect(instance instanceof TirlValidator).toStrictEqual(true);
+    expect(instance.tirlLabelApi).toStrictEqual('http://ceramic.com');
   });
 
   test('throws when barcode data is not found', async () => {

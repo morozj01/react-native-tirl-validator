@@ -1,15 +1,11 @@
-import { CeramicError } from '../../modules/errors';
+import { ErrorWithCode } from '../../modules/errors';
 
-describe('CeramicError', () => {
+describe('ErrorWithCode', () => {
   test('constructor instantiates object correctly', () => {
-    const error = new CeramicError({ error: 'data' });
+    const error = new ErrorWithCode({ message: 'error message', code: 999 });
 
-    expect(error.message).toStrictEqual(
-      'Errors retrieving data from ceramic node'
-    );
+    expect(error.message).toStrictEqual('error message');
 
-    expect(error.errors).toStrictEqual({
-      error: 'data',
-    });
+    expect(error.code).toStrictEqual(999);
   });
 });

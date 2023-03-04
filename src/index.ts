@@ -1,42 +1,32 @@
-import { ComposeClient } from '@composedb/client';
 import { nativeValidator } from './modules/native';
 import { getLabel } from './modules/ceramic';
-// @ts-ignore
-import { definition } from './constants/ceramicRuntime.js';
-//@ts-ignore
-import { polyfill as polyfillEncoding } from 'react-native-polyfill-globals/src/encoding';
-//@ts-ignore
-import { polyfill as polyfillURL } from 'react-native-polyfill-globals/src/url';
 import { ErrorWithCode } from './modules/errors';
-
-polyfillEncoding();
-polyfillURL();
 
 class TirlValidator {
   public labelId: string;
   public imageData: string;
-  public composeClient: ComposeClient;
+  public tirlLabelApi: string;
 
-  constructor(ceramic: string) {
-    this.composeClient = new ComposeClient({
-      ceramic,
-      definition,
-    });
+  constructor(labelApiEndpoint: string) {
+    this.tirlLabelApi = labelApiEndpoint;
   }
 
   public async validate(fileName: string, flash = true) {
     try {
-      const barcodeData = JSON.parse(
-        await nativeValidator.findBarcode(fileName, flash)
+      const barcodeDataString = await nativeValidator.findBarcode(
+        fileName,
+        flash
       );
 
-      if (Object.keys(barcodeData).length < 1) {
+      const barcodeDataObject = JSON.parse(barcodeDataString);
+
+      if (Object.keys(barcodeDataObject).length < 1) {
         throw new ErrorWithCode({ message: 'Barcode not found', code: 1 });
       }
 
-      const labelId = barcodeData.barcode.split('/').pop();
+      const labelId = barcodeDataObject.barcode.split('/').pop();
       if (!this.labelId) {
-        const { node } = await getLabel(this.composeClient, labelId);
+        const { node } = await getLabel(this.tirlLabelApi, labelId);
         this.labelId = node.labelId;
         this.imageData = node.imageData;
       }
@@ -49,7 +39,7 @@ class TirlValidator {
       }
 
       const labelData = JSON.parse(
-        await nativeValidator.processLabel(JSON.stringify(barcodeData))
+        await nativeValidator.processLabel(barcodeDataString)
       );
 
       if (labelData.error) throw new Error(labelData.error);

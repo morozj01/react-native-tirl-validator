@@ -8,12 +8,4 @@ class ErrorWithCode extends Error {
   }
 }
 
-class CeramicError extends ErrorWithCode {
-  errors: { [key: string]: any };
-  constructor(errors: { [key: string]: any }) {
-    super({ message: 'Errors retrieving data from ceramic node', code: 3 });
-    this.errors = errors;
-  }
-}
-
-export { CeramicError, ErrorWithCode };
+export { ErrorWithCode };
