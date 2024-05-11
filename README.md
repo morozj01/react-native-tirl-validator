@@ -13,7 +13,7 @@ npx pod-install
 
 ## About
 
-This library facilitates easy integration with the [TrustlessIRL](https://tirl.xyz) protocol by enabling mobile applications to perform camera based scans of TIRL labels.
+This library facilitates easy integration with the [TrustlessIRL](https://zkladder.com/tirl) protocol by enabling mobile applications to perform camera based scans of TIRL labels.
 
 Read more about the TrustlessIRL protocol [here.](https://docs.tirl.xyz)
 
